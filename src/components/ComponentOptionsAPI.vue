@@ -2,12 +2,14 @@
   <section>
     <h1>Options API</h1>
     <button
+      id="button-1"
       type="button"
       @click="handleClick1"
     >
       Clicked {{ counter1 }} time(s)
     </button>
     <button
+      id="button-2"
       type="button"
       @click="handleClick2()"
     >
