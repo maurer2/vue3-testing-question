@@ -1,14 +1,18 @@
 <template>
+  <ComponentCompositionAPI />
+  <hr>
   <ComponentOptionsAPI />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import ComponentCompositionAPI from './components/ComponentCompositionAPI.vue';
 import ComponentOptionsAPI from './components/ComponentOptionsAPI.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
+    ComponentCompositionAPI,
     ComponentOptionsAPI,
   },
 });

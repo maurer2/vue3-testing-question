@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Click test</h1>
+    <h1>Options API</h1>
     <button
       type="button"
       @click="handleClick1"
@@ -17,28 +17,23 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ComponentOptionsAPI',
-  setup() {
-    const counter1 = ref<number>(0);
-    const counter2 = ref<number>(0);
-
-    function handleClick1(): void {
-      counter1.value += 1;
-    }
-
-    function handleClick2(): void {
-      counter2.value += 1;
-    }
-
+  data() {
     return {
-      counter1,
-      counter2,
-      handleClick1,
-      handleClick2,
+      counter1: 0,
+      counter2: 0,
     };
+  },
+  methods: {
+    handleClick1() {
+      this.counter1 += 1;
+    },
+    handleClick2() {
+      this.counter2 += 1;
+    },
   },
 });
 
