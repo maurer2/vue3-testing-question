@@ -4,10 +4,12 @@ import ComponentOptionsAPI from './ComponentOptionsAPI.vue';
 
 describe('Component Options Api', () => {
   let cmp: any;
-  const spyHandleClick1 = jest.spyOn((ComponentOptionsAPI.methods as any), 'handleClick1');
+  let spyHandleClick1: any;
 
   beforeEach(() => {
     cmp = shallowMount(ComponentOptionsAPI, {});
+
+    spyHandleClick1 = jest.spyOn((ComponentOptionsAPI.methods as any), 'handleClick1');
   });
 
   afterEach(() => {
@@ -15,6 +17,8 @@ describe('Component Options Api', () => {
 
     jest.clearAllMocks();
     jest.resetModules();
+
+    spyHandleClick1.mockClear();
   });
 
   it('renders', () => {
@@ -28,17 +32,26 @@ describe('Component Options Api', () => {
   });
 
   it('button1 triggers counter update function when clicked v2', async () => {
-    jest.spyOn(cmp.vm, 'handleClick1');
+    const spy = jest.spyOn(cmp.vm, 'handleClick1');
 
     await cmp.find('#button-1').trigger('click');
-
-    expect(cmp.vm.handleClick1).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
   it('button2 triggers counter update function when clicked', async () => {
-    jest.spyOn(cmp.vm, 'handleClick2');
+    const spy = jest.spyOn(cmp.vm, 'handleClick2');
 
     await cmp.find('#button-2').trigger('click');
-    expect(cmp.vm.handleClick2).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('button1 updates counter1', async () => {
+    await cmp.find('#button-1').trigger('click');
+    expect(cmp.vm.counter1).toBe(1);
+  });
+
+  it('button2 updates counter2', async () => {
+    await cmp.find('#button-2').trigger('click');
+    expect(cmp.vm.counter2).toBe(1);
   });
 });
