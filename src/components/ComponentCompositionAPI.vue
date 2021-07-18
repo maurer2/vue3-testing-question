@@ -2,14 +2,14 @@
   <section>
     <h1>Composition API</h1>
     <button
-      id="button-1"
+      id="button-1a"
       type="button"
       @click="handleClick1"
     >
       Clicked {{ counter1 }} time(s)
     </button>
     <button
-      id="button-2"
+      id="button-2a"
       type="button"
       @click="handleClick2()"
     >
