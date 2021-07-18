@@ -17,7 +17,13 @@ describe('Component Composition Api', () => {
   });
 
   it('renders', () => {
-    expect(cmp.html()).toContain('Clicked');
+    expect(cmp.html()).toContain('Composition API');
+  });
+
+  it('matches snapshot', () => {
+    // https://github.com/eddyerburgh/jest-serializer-vue/issues/49
+    // eslint-disable-next-line no-underscore-dangle
+    expect(cmp.__app._container).toMatchSnapshot();
   });
 
   it('button1 triggers counter update function when clicked v2', async () => {
@@ -30,7 +36,7 @@ describe('Component Composition Api', () => {
   it('button2 triggers counter update function when clicked', async () => {
     const spy = jest.spyOn(cmp.vm, 'handleClick2');
 
-    await cmp.find('#button-2a').trigger('click');
+    await cmp.find('#button-1b').trigger('click');
     expect(spy).toHaveBeenCalled();
   });
 
@@ -40,7 +46,7 @@ describe('Component Composition Api', () => {
   });
 
   it('button2 updates counter2', async () => {
-    await cmp.find('#button-2a').trigger('click');
+    await cmp.find('#button-1b').trigger('click');
     expect(cmp.vm.counter2).toBe(1);
   });
 });

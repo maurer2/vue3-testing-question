@@ -1,28 +1,26 @@
 <template>
   <section>
     <h1>Composition API</h1>
-    <button
+    <ButtonComponent
       id="button-1a"
-      type="button"
       @click="handleClick1"
-    >
-      Clicked {{ counter1 }} time(s)
-    </button>
-    <button
-      id="button-2a"
-      type="button"
+    />
+    <ButtonComponent
+      id="button-1b"
       @click="handleClick2()"
-    >
-      Clicked {{ counter2 }} time(s)
-    </button>
+    />
   </section>
 </template>
 
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
+import ButtonComponent from './ButtonComponent.vue';
 
 export default defineComponent({
   name: 'ComponentCompositionAPI',
+  components: {
+    ButtonComponent,
+  },
   setup() {
     const counter1 = ref<number>(0);
     const counter2 = ref<number>(0);

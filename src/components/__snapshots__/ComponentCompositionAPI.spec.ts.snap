@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Composition Api matches snapshot 1`] = `
+<div
+  data-v-app=""
+>
+  <section>
+    <h1>
+      Composition API
+    </h1>
+    <button-component-stub
+      id="button-1a"
+    />
+    <button-component-stub
+      id="button-1b"
+    />
+  </section>
+</div>
+`;
