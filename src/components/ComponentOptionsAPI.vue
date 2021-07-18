@@ -1,28 +1,27 @@
 <template>
   <section>
     <h1>Options API</h1>
-    <button
-      id="button-1b"
-      type="button"
+
+    <ButtonComponent
+      id="button-2a"
       @click="handleClick1"
-    >
-      Clicked {{ counter1 }} time(s)
-    </button>
-    <button
+    />
+    <ButtonComponent
       id="button-2b"
-      type="button"
       @click="handleClick2()"
-    >
-      Clicked {{ counter2 }} time(s)
-    </button>
+    />
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import ButtonComponent from './ButtonComponent.vue';
 
 export default defineComponent({
   name: 'ComponentOptionsAPI',
+  components: {
+    ButtonComponent,
+  },
   data() {
     return {
       counter1: 0,

@@ -7,9 +7,8 @@ describe('Component Options Api', () => {
   let spyHandleClick1: any;
 
   beforeEach(() => {
-    cmp = shallowMount(ComponentOptionsAPI, {});
-
     spyHandleClick1 = jest.spyOn((ComponentOptionsAPI.methods as any), 'handleClick1');
+    cmp = shallowMount(ComponentOptionsAPI, {});
   });
 
   afterEach(() => {
@@ -22,19 +21,25 @@ describe('Component Options Api', () => {
   });
 
   it('renders', () => {
-    expect(cmp.html()).toContain('Clicked');
+    expect(cmp.html()).toContain('Options API');
   });
 
-  it('button1 triggers counter update function when clicked', async () => {
-    await cmp.find('#button-1b').trigger('click');
+  it('matches snapshot', () => {
+    // https://github.com/eddyerburgh/jest-serializer-vue/issues/49
+    // eslint-disable-next-line no-underscore-dangle
+    expect(cmp.__app._container).toMatchSnapshot();
+  });
+
+  it('button1 triggers counter update function when clicked - spied before mount', async () => {
+    await cmp.find('#button-2a').trigger('click');
 
     expect(spyHandleClick1).toHaveBeenCalled();
   });
 
-  it('button1 triggers counter update function when clicked v2', async () => {
+  it('button1 triggers counter update function when clicked - spied on the fly', async () => {
     const spy = jest.spyOn(cmp.vm, 'handleClick1');
 
-    await cmp.find('#button-1b').trigger('click');
+    await cmp.find('#button-2a').trigger('click');
     expect(spy).toHaveBeenCalled();
   });
 
@@ -46,7 +51,7 @@ describe('Component Options Api', () => {
   });
 
   it('button1 updates counter1', async () => {
-    await cmp.find('#button-1b').trigger('click');
+    await cmp.find('#button-2a').trigger('click');
     expect(cmp.vm.counter1).toBe(1);
   });
 

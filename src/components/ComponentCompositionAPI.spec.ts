@@ -26,7 +26,7 @@ describe('Component Composition Api', () => {
     expect(cmp.__app._container).toMatchSnapshot();
   });
 
-  it('button1 triggers counter update function when clicked v2', async () => {
+  it('button1 triggers counter update function when clicked', async () => {
     const spy = jest.spyOn(cmp.vm, 'handleClick1');
 
     await cmp.find('#button-1a').trigger('click');
