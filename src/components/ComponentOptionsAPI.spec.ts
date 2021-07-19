@@ -63,7 +63,7 @@ describe('Component Options Api', () => {
     expect(cmp.vm.counter2).toBe(1);
   });
 
-  it('run runOnMount runs on mount', async () => {
+  it('runOnMount runs on mount', async () => {
     expect(spyRunOnMount).toHaveBeenCalled();
   });
 });

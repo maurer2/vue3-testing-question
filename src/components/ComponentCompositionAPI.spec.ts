@@ -8,6 +8,8 @@ describe('Component Composition Api', () => {
 
   beforeEach(() => {
     cmp = shallowMount(ComponentCompositionAPI, {});
+
+    spyRunOnMount = jest.spyOn(cmp.vm, 'runOnMount');
   });
 
   afterEach(() => {
@@ -49,5 +51,10 @@ describe('Component Composition Api', () => {
   it('button2 updates counter2', async () => {
     await cmp.find('#button-1b').trigger('click');
     expect(cmp.vm.counter2).toBe(1);
+  });
+
+  it('runOnMount runs on mount', async () => {
+    // jest.spyOn(cmp.vm, 'runOnMount');
+    expect(spyRunOnMount).toHaveBeenCalled();
   });
 });

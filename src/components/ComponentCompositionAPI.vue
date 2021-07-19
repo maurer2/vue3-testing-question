@@ -33,11 +33,16 @@ export default defineComponent({
       counter2.value += 1;
     }
 
+    function runOnMount() {
+      console.log('run on mount');
+    }
+
     return {
       counter1,
       counter2,
       handleClick1,
       handleClick2,
+      runOnMount, // for testing
     };
   },
 });
