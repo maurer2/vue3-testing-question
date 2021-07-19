@@ -5,9 +5,12 @@ import ComponentOptionsAPI from './ComponentOptionsAPI.vue';
 describe('Component Options Api', () => {
   let cmp: any;
   let spyHandleClick1: any;
+  let spyRunOnMount: any;
 
   beforeEach(() => {
     spyHandleClick1 = jest.spyOn((ComponentOptionsAPI.methods as any), 'handleClick1');
+    spyRunOnMount = jest.spyOn((ComponentOptionsAPI.methods as any), 'runOnMount');
+
     cmp = shallowMount(ComponentOptionsAPI, {});
   });
 
@@ -58,5 +61,9 @@ describe('Component Options Api', () => {
   it('button2 updates counter2', async () => {
     await cmp.find('#button-2b').trigger('click');
     expect(cmp.vm.counter2).toBe(1);
+  });
+
+  it('run runOnMount runs on mount', async () => {
+    expect(spyRunOnMount).toHaveBeenCalled();
   });
 });

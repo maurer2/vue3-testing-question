@@ -28,12 +28,18 @@ export default defineComponent({
       counter2: 0,
     };
   },
+  mounted() {
+    this.runOnMount();
+  },
   methods: {
     handleClick1() {
       this.counter1 += 1;
     },
     handleClick2() {
       this.counter2 += 1;
+    },
+    runOnMount() {
+      console.log('run on mount');
     },
   },
 });

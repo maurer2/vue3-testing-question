@@ -4,6 +4,7 @@ import ComponentCompositionAPI from './ComponentCompositionAPI.vue';
 
 describe('Component Composition Api', () => {
   let cmp: any;
+  let spyRunOnMount: any;
 
   beforeEach(() => {
     cmp = shallowMount(ComponentCompositionAPI, {});
