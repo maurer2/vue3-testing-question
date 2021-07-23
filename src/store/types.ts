@@ -1,5 +1,4 @@
 import { ActionContext, ActionTree, MutationPayload } from 'vuex';
-import { InjectionKey } from 'vue';
 
 const appStates = ['initial', 'loaded', 'error'] as const;
 
@@ -26,7 +25,6 @@ type Store = {
   getters: Getters,
   mutations: Mutations,
   actions: Actions
-
 };
 
 export {

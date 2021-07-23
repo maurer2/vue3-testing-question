@@ -1,7 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 
-import { store, key } from './store/index.ts';
+// eslint-disable-next-line import/extensions
+import { store, key } from './store/index';
 
 createApp(App)
   .use(store, key)

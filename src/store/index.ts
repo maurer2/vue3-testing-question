@@ -1,22 +1,24 @@
-import { createStore, Store as StoreType } from 'vuex';
+import { createStore, Store as GenericStore } from 'vuex';
 import { InjectionKey } from 'vue';
 
 import {
   appStates,
-  Store,
+  // Store,
   Actions,
   State,
   Getters,
   Mutations,
-} from './types.ts';
+// eslint-disable-next-line import/extensions
+} from './types';
 
-const key: InjectionKey<Store<State>> = Symbol('key');
+const state: State | any = {
+  appState: 'loaded',
+  numberOfClicks: 0,
+};
 
-const store = createStore<StoreType<Store>>({
-  state: {
-    // appState: 'initial',
-    numberOfClicks: 0,
-  },
+const key: InjectionKey<GenericStore<State>> = Symbol('key');
+const store = createStore<GenericStore<State>>({
+  state,
 });
 
 export {
