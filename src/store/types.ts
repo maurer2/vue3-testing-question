@@ -1,4 +1,6 @@
-import { ActionContext, ActionTree, MutationPayload } from 'vuex';
+import {
+  ActionContext, ActionTree, MutationPayload, Store as GenericStore,
+} from 'vuex';
 
 const appStates = ['initial', 'loaded', 'error'] as const;
 
@@ -20,12 +22,7 @@ type Actions<S = State> = {
   UPDATE_NUMBER_OF_CLICKS(context: ActionContext<S, S>): void;
 };
 
-type Store = {
-  state: State,
-  getters: Getters,
-  mutations: Mutations,
-  actions: Actions
-};
+type Store = GenericStore<State>
 
 export {
   appStates,
