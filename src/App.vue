@@ -14,7 +14,7 @@ import ComponentCompositionAPI from './components/ComponentCompositionAPI.vue';
 import ComponentOptionsAPI from './components/ComponentOptionsAPI.vue';
 
 // eslint-disable-next-line import/extensions
-import { useStore, useStoreReturnType } from './store/index';
+import { useStore } from './store/index';
 
 export default defineComponent({
   name: 'App',

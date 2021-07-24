@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { createStore, useStore as genericUseStore } from 'vuex';
 import { InjectionKey } from 'vue';
 
@@ -19,13 +21,23 @@ const store = createStore<State>({
       numberOfClicks: 0,
     };
   },
+  actions: {
+    UPDATE_NUMBER_OF_CLICKS(context): Promise<void> {
+      context.commit('increment');
+
+      return Promise.resolve();
+    },
+  } as Actions,
+  mutations: {
+    UPDATE_NUMBER_OF_CLICKS(state): void {
+      state.numberOfClicks += 1;
+    },
+  } as Mutations,
 });
 
 export function useStore(): Store {
   return genericUseStore(key);
 }
-
-export type useStoreReturnType = typeof store // becomes any
 
 export {
   store,

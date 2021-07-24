@@ -1,5 +1,5 @@
 import {
-  ActionContext, ActionTree, MutationPayload, Store as GenericStore,
+  ActionContext, MutationPayload, Store as GenericStore, ActionPayload,
 } from 'vuex';
 
 const appStates = ['initial', 'loaded', 'error'] as const;
@@ -14,12 +14,11 @@ type Getters = {
 }
 
 type Mutations<S = State> = {
-  INCREMENT_NUMBER_OF_CLICKS(state: S, payload: MutationPayload): void;
-  DECREMENT_NUMBER_OF_CLICKS(state: S, payload: MutationPayload): void;
+  UPDATE_NUMBER_OF_CLICKS(state: S, payload: MutationPayload): void;
 };
 
 type Actions<S = State> = {
-  UPDATE_NUMBER_OF_CLICKS(context: ActionContext<S, S>): void;
+  UPDATE_NUMBER_OF_CLICKS(context: ActionContext<S, S>, payload: ActionPayload): Promise<void>;
 };
 
 type Store = GenericStore<State>
