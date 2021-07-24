@@ -23,7 +23,7 @@ const store = createStore<State>({
   },
   actions: {
     UPDATE_NUMBER_OF_CLICKS(context): Promise<void> {
-      context.commit('increment');
+      context.commit('UPDATE_NUMBER_OF_CLICKS');
 
       return Promise.resolve();
     },

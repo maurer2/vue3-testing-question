@@ -3,6 +3,14 @@
   <hr>
   <ComponentOptionsAPI />
   <hr>
+  <div>
+    <button
+      type="button"
+      @click="handleClick()"
+    >
+      Click
+    </button>
+  </div>
   <code>
     {{ state }}
   </code>
@@ -25,9 +33,14 @@ export default defineComponent({
   setup() {
     const store = useStore();
 
+    function handleClick(): void {
+      store.dispatch('UPDATE_NUMBER_OF_CLICKS');
+    }
+
     return {
       store,
       state: computed(() => store.state),
+      handleClick,
     };
   },
 });
