@@ -2,14 +2,6 @@ import {
   ActionContext, MutationPayload, Store as GenericStore, ActionPayload, ActionTree,
 } from 'vuex';
 
-const appStates = ['initial', 'loaded', 'error'] as const;
-const actionsMap = {
-  updateNumberOfClicks: 'UPDATE_NUMBER_OF_CLICKS',
-  test: 'TEST',
-} as const;
-
-type ActionsName = keyof typeof actionsMap
-
 type State = {
   appState: typeof appStates[number]
   numberOfClicks: number,
@@ -33,7 +25,7 @@ type Store = GenericStore<State>
 
 export {
   appStates,
-  actionsMap,
+  actionsName,
   Store,
   Actions,
   State,

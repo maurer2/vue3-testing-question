@@ -1,12 +1,11 @@
 /* eslint-disable no-param-reassign */
-
 import {
   createStore, useStore as genericUseStore, ActionTree, ActionPayload,
 } from 'vuex';
 import { InjectionKey } from 'vue';
 
 import {
-  actionsMap,
+  actionsName,
   appStates,
   // Actions,
   State,
@@ -16,13 +15,10 @@ import {
 // eslint-disable-next-line import/extensions
 } from './types';
 
-const actions: ActionTree<State, State> = {
-  [actionsMap.updateNumberOfClicks](context, payload: ActionPayload): Promise<void> {
-    context.commit(actionsMap.updateNumberOfClicks);
-
-    return Promise.resolve();
-  },
-};
+import {
+  actions,
+// eslint-disable-next-line import/extensions
+} from './actions';
 
 const key: InjectionKey<Store> = Symbol('key');
 const store = createStore<State>({

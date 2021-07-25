@@ -24,7 +24,7 @@ import ComponentOptionsAPI from './components/ComponentOptionsAPI.vue';
 // eslint-disable-next-line import/extensions
 import { useStore } from './store/index';
 // eslint-disable-next-line import/extensions
-import { actionsMap } from './store/types';
+import { actionsNames } from './store/actions';
 
 export default defineComponent({
   name: 'App',
@@ -36,7 +36,7 @@ export default defineComponent({
     const store = useStore();
 
     function handleClick(): void {
-      store.dispatch(actionsMap.updateNumberOfClicks);
+      store.dispatch(actionsNames.updateNumberOfClicks);
     }
 
     return {
