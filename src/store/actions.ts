@@ -1,12 +1,8 @@
 import { ActionTree, ActionPayload } from 'vuex';
-import {
-  State,
-// eslint-disable-next-line import/extensions
-} from './types';
+import { State } from './types';
 
 const actionsNames = Object.freeze({
   updateNumberOfClicks: 'UPDATE_NUMBER_OF_CLICKS',
-  test: 'TEST',
 } as const);
 
 type ActionsName = keyof typeof actionsNames

@@ -11,14 +11,10 @@ import {
   State,
   Store,
   Getters,
-  Mutations,
-// eslint-disable-next-line import/extensions
 } from './types';
 
-import {
-  actions,
-// eslint-disable-next-line import/extensions
-} from './actions';
+import { actions } from './actions';
+import { mutations } from './mutations';
 
 const key: InjectionKey<Store> = Symbol('key');
 const store = createStore<State>({
@@ -29,11 +25,7 @@ const store = createStore<State>({
     };
   },
   actions,
-  mutations: {
-    UPDATE_NUMBER_OF_CLICKS(state): void {
-      state.numberOfClicks += 1;
-    },
-  } as Mutations,
+  mutations,
 });
 
 export function useStore(): Store {

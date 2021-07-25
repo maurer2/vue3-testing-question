@@ -20,12 +20,17 @@ module.exports = {
     'vue/component-name-in-template-casing': 'error',
     'newline-before-return': 'error',
     'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
+
   },
   settings: {
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
   },
 };
