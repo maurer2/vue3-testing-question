@@ -2,7 +2,7 @@ import { MutationTree, MutationPayload } from 'vuex';
 import { State } from './types';
 
 const mutationsNames = Object.freeze({
-  updateNumberOfClicks: 'UPDATE_NUMBER_OF_CLICKS',
+  updateNumberOfClicks: 'UPDATE_NUMBER_OF_CLICKS2',
 } as const);
 
 const mutations: MutationTree<State> = {
@@ -14,4 +14,5 @@ const mutations: MutationTree<State> = {
 
 export {
   mutations,
+  mutationsNames,
 };
