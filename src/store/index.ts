@@ -1,17 +1,28 @@
 /* eslint-disable no-param-reassign */
 
-import { createStore, useStore as genericUseStore } from 'vuex';
+import {
+  createStore, useStore as genericUseStore, ActionTree, ActionPayload,
+} from 'vuex';
 import { InjectionKey } from 'vue';
 
 import {
+  actionsMap,
   appStates,
-  Actions,
+  // Actions,
   State,
   Store,
   Getters,
   Mutations,
 // eslint-disable-next-line import/extensions
 } from './types';
+
+const actions: ActionTree<State, State> = {
+  [actionsMap.updateNumberOfClicks](context, payload: ActionPayload): Promise<void> {
+    context.commit(actionsMap.updateNumberOfClicks);
+
+    return Promise.resolve();
+  },
+};
 
 const key: InjectionKey<Store> = Symbol('key');
 const store = createStore<State>({
@@ -21,13 +32,7 @@ const store = createStore<State>({
       numberOfClicks: 0,
     };
   },
-  actions: {
-    UPDATE_NUMBER_OF_CLICKS(context): Promise<void> {
-      context.commit('UPDATE_NUMBER_OF_CLICKS');
-
-      return Promise.resolve();
-    },
-  } as Actions,
+  actions,
   mutations: {
     UPDATE_NUMBER_OF_CLICKS(state): void {
       state.numberOfClicks += 1;
