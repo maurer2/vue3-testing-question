@@ -5,12 +5,20 @@ const getterNames = Object.freeze({
   hasBeenClicked: 'HAS_BEEN_CLICKED',
 } as const);
 
-const getters: GetterTree<State, State> = {
-  [getterNames.hasBeenClicked](state): boolean {
+type Getters = {
+  [getterNames.hasBeenClicked](state: State): boolean
+}
+
+const getters: GetterTree<State, State> & Getters = {
+  [getterNames.hasBeenClicked](state) {
     return state.numberOfClicks !== 0;
   },
 };
 
 export {
   getters,
+};
+
+export type {
+  Getters,
 };

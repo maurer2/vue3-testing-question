@@ -1,4 +1,5 @@
 import { Store as GenericStore } from 'vuex';
+import type { Getters } from './getters';
 
 const appStates = ['initial', 'loaded', 'error'] as const;
 
@@ -9,7 +10,12 @@ type State = {
   numberOfClicks: number,
 }
 
-type Store = GenericStore<State>
+// https://dev.to/3vilarthas/vuex-typescript-m4j
+type Store = Omit<GenericStore<State>, 'getters'> & {
+  getters: {
+    [K in keyof Getters]: ReturnType<Getters[K]>
+  }
+}
 
 export {
   appStates,
