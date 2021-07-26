@@ -13,6 +13,7 @@
   </div>
   <code>
     {{ state }}
+    {{ hasBeenClicked }}
   </code>
 </template>
 
@@ -40,8 +41,8 @@ export default defineComponent({
     }
 
     return {
-      store,
       state: computed(() => store.state),
+      hasBeenClicked: computed(() => store.getters.HAS_BEEN_CLICKED),
       handleClick,
     };
   },

@@ -10,11 +10,11 @@ import {
   // Actions,
   State,
   Store,
-  Getters,
 } from './types';
 
 import { actions } from './actions';
 import { mutations } from './mutations';
+import { getters } from './getters';
 
 const key: InjectionKey<Store> = Symbol('key');
 const store = createStore<State>({
@@ -24,6 +24,7 @@ const store = createStore<State>({
       numberOfClicks: 0,
     };
   },
+  getters,
   actions,
   mutations,
 });
