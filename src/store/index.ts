@@ -6,15 +6,6 @@ import { State, Store } from './types';
 import { actions } from './actions';
 import { mutations } from './mutations';
 import { getters } from './getters';
-// import type { Getters } from './getters';
-
-/*
-type StoreAugmented = Omit<Store, 'getters'> & {
-  getters: {
-    [K in keyof Getters]: ReturnType<Getters[K]>
-  }
-}
-*/
 
 const key: InjectionKey<Store> = Symbol('key');
 const store = createStore<State>({

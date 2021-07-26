@@ -14,6 +14,7 @@
   <code>
     {{ state }}
     {{ hasBeenClicked }}
+    {{ hasBeenClicke5Times }}
   </code>
 </template>
 
@@ -43,6 +44,7 @@ export default defineComponent({
     return {
       state: computed(() => store.state),
       hasBeenClicked: computed(() => store.getters.HAS_BEEN_CLICKED),
+      hasBeenClicke5Times: computed(() => store.getters.HAS_BEEN_CLICKED_N_TIMES(5)),
       handleClick,
     };
   },
