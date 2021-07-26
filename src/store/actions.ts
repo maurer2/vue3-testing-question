@@ -1,16 +1,16 @@
 import { ActionTree, ActionPayload } from 'vuex';
 import { State } from './types';
-import { mutationsNames } from './mutations';
+import { mutationNames } from './mutations';
 
-const actionsNames = Object.freeze({
+const actionNames = Object.freeze({
   updateNumberOfClicks: 'UPDATE_NUMBER_OF_CLICKS',
 } as const);
 
-type ActionsName = keyof typeof actionsNames
+type ActionsName = keyof typeof actionNames
 
 const actions: ActionTree<State, State> = {
-  [actionsNames.updateNumberOfClicks](context, payload?: ActionPayload): Promise<void> {
-    context.commit(mutationsNames.updateNumberOfClicks);
+  [actionNames.updateNumberOfClicks](context, payload?: ActionPayload): Promise<void> {
+    context.commit(mutationNames.updateNumberOfClicks);
 
     return Promise.resolve();
   },
@@ -18,7 +18,7 @@ const actions: ActionTree<State, State> = {
 
 export {
   actions,
-  actionsNames,
+  actionNames,
 };
 
 export type {

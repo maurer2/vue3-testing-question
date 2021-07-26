@@ -1,12 +1,12 @@
 import { MutationTree, MutationPayload } from 'vuex';
 import { State } from './types';
 
-const mutationsNames = Object.freeze({
+const mutationNames = Object.freeze({
   updateNumberOfClicks: 'UPDATE_NUMBER_OF_CLICKS2',
 } as const);
 
 const mutations: MutationTree<State> = {
-  [mutationsNames.updateNumberOfClicks](state, payload?: MutationPayload): void {
+  [mutationNames.updateNumberOfClicks](state, payload?: MutationPayload): void {
     // eslint-disable-next-line no-param-reassign
     state.numberOfClicks += 1;
   },
@@ -14,5 +14,5 @@ const mutations: MutationTree<State> = {
 
 export {
   mutations,
-  mutationsNames,
+  mutationNames,
 };

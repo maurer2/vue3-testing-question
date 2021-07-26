@@ -1,16 +1,7 @@
 /* eslint-disable no-param-reassign */
-import {
-  createStore, useStore as genericUseStore, ActionTree, ActionPayload,
-} from 'vuex';
+import { createStore, useStore as genericUseStore } from 'vuex';
 import { InjectionKey } from 'vue';
-
-import {
-  actionsName,
-  appStates,
-  // Actions,
-  State,
-  Store,
-} from './types';
+import { State, Store } from './types';
 
 import { actions } from './actions';
 import { mutations } from './mutations';
@@ -29,11 +20,12 @@ const store = createStore<State>({
   mutations,
 });
 
-export function useStore(): Store {
+function useStore(): Store {
   return genericUseStore(key);
 }
 
 export {
+  useStore,
   store,
   key,
 };
