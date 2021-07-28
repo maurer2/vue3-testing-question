@@ -21,7 +21,8 @@ const store = createStore<State>({
 });
 
 function useStore(): Store {
-  return genericUseStore(key);
+  return genericUseStore();
+  // return genericUseStore(key);
 }
 
 export {

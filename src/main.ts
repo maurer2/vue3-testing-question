@@ -5,5 +5,6 @@ import App from './App.vue';
 import { store, key } from './store/index';
 
 createApp(App)
-  .use(store, key)
+  // .use(store, key)
+  .use(store)
   .mount('#app');
