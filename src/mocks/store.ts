@@ -1,21 +1,23 @@
 import { createStore, useStore } from 'vuex';
 import { State } from '../store/types';
-import { key } from '../store/index';
+// import { key } from '../store/index';
 
-const storeInitial = createStore({
+const storeInitial = createStore<State>({
   state: {
-    appState: 'initial',
+    appState: 'loaded',
     numberOfClicks: 0,
-  } as State,
+  },
   getters: {
     HAS_BEEN_CLICKED: jest.fn(() => false),
     HAS_BEEN_CLICKED_N_TIMES: jest.fn(() => (number: number) => false),
-  } as any,
+  },
 });
 
-const keyedStore = useStore(key);
+// causes: [Vue warn]: inject() can only be used inside setup() or functional components.
+// const keyedStore = useStore(key);
 
 export {
   storeInitial,
-  keyedStore,
 };
+
+export { key } from '../store/index';

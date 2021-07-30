@@ -2,7 +2,8 @@
 import { shallowMount } from '@vue/test-utils';
 import AppComponent from './App.vue';
 
-import { storeInitial, key } from './mocks/store';
+import { storeInitial as storeMock, key } from './mocks/store';
+import { store as storeReal } from './store/index';
 
 describe('App', () => {
   let cmp: any;
@@ -11,7 +12,8 @@ describe('App', () => {
     cmp = shallowMount(AppComponent, {
       global: {
         provide: {
-          [key as symbol]: storeInitial,
+          [key as symbol]: storeMock,
+          // [key as symbol]: storeReal,
         },
       },
     });
