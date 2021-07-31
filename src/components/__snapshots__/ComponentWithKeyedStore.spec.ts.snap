@@ -4,24 +4,27 @@ exports[`App matches snapshot 1`] = `
 <div
   data-v-app=""
 >
-  
-  <component-composition-a-p-i-stub />
-  <hr />
-  <component-options-a-p-i-stub />
-  <hr />
-  <div>
+  <section>
     <button
       type="button"
     >
        Click 
     </button>
-  </div>
-  <code>
-    {
+    <div>
+       Debug 
+      <code>
+        {
   "appState": "loaded",
   "numberOfClicks": 0
-} false false
-  </code>
-  
+}
+      </code>
+      <code>
+        false
+      </code>
+      <code>
+        false
+      </code>
+    </div>
+  </section>
 </div>
 `;

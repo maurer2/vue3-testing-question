@@ -3,19 +3,6 @@
   <hr>
   <ComponentOptionsAPI />
   <hr>
-  <div>
-    <button
-      type="button"
-      @click="handleClick()"
-    >
-      Click
-    </button>
-  </div>
-  <code>
-    {{ state }}
-    {{ hasBeenClicked }}
-    {{ hasBeenClicke5Times }}
-  </code>
 </template>
 
 <script lang="ts">

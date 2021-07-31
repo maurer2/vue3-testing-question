@@ -1,15 +1,15 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { shallowMount } from '@vue/test-utils';
-import AppComponent from './App.vue';
+import Component from './ComponentWithKeyedStore.vue';
 
-import { storeInitial as storeMock, key } from './mocks/store';
-import { store as storeReal } from './store/index';
+import { storeInitial as storeMock, key } from '../mocks/store';
+import { store as storeReal } from '../store/index';
 
 describe('App', () => {
   let cmp: any;
 
   beforeEach(() => {
-    cmp = shallowMount(AppComponent, {
+    cmp = shallowMount(Component, {
       global: {
         provide: {
           [key as symbol]: storeMock,
