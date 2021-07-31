@@ -24,9 +24,9 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 // eslint-disable-next-line import/extensions
+import { useStore } from 'vuex';
 import { actionNames } from '../store/actions';
 // eslint-disable-next-line import/extensions
-import { useStore } from '../store/index';
 
 export default defineComponent({
   name: 'ComponentWithKeyedStore',
