@@ -1,13 +1,13 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { shallowMount } from '@vue/test-utils';
-import ComponentCompositionAPI from './ComponentCompositionAPI.vue';
+import Component from './component-composition-api.vue';
 
 describe('Component Composition Api', () => {
   let cmp: any;
   let spyRunOnMount: any;
 
   beforeEach(() => {
-    cmp = shallowMount(ComponentCompositionAPI, {});
+    cmp = shallowMount(Component, {});
 
     spyRunOnMount = jest.spyOn(cmp.vm, 'runOnMount');
   });

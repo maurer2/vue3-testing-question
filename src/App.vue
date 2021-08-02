@@ -7,8 +7,8 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import ComponentCompositionAPI from './components/ComponentCompositionAPI.vue';
-import ComponentOptionsAPI from './components/ComponentOptionsAPI.vue';
+import ComponentCompositionAPI from './components/component-composition-api.vue';
+import ComponentOptionsAPI from './components/component-options-api.vue';
 
 // eslint-disable-next-line import/extensions
 import { useStore } from './store/index';

@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { shallowMount } from '@vue/test-utils';
-import ComponentOptionsAPI from './ComponentOptionsAPI.vue';
+import Component from './component-options-api.vue';
 
 describe('Component Options Api', () => {
   let cmp: any;
@@ -8,10 +8,10 @@ describe('Component Options Api', () => {
   let spyRunOnMount: any;
 
   beforeEach(() => {
-    spyHandleClick1 = jest.spyOn((ComponentOptionsAPI.methods as any), 'handleClick1');
-    spyRunOnMount = jest.spyOn((ComponentOptionsAPI.methods as any), 'runOnMount');
+    spyHandleClick1 = jest.spyOn((Component.methods as any), 'handleClick1');
+    spyRunOnMount = jest.spyOn((Component.methods as any), 'runOnMount');
 
-    cmp = shallowMount(ComponentOptionsAPI, {});
+    cmp = shallowMount(Component, {});
   });
 
   afterEach(() => {

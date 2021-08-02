@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { shallowMount } from '@vue/test-utils';
-import Component from './ComponentWithKeyedStore.vue';
+import Component from './component-with-default-usestore-function-keyed.vue';
 
 import { storeInitial as storeMock, key } from '../mocks/store';
 import { store as storeReal } from '../store/index';

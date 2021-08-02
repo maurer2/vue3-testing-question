@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App matches snapshot 1`] = `
+<div
+  data-v-app=""
+>
+  <section>
+    <button
+      type="button"
+    >
+       Click 
+    </button>
+    <div>
+       Debug 
+      <code>
+        {
+  "appState": "loaded",
+  "numberOfClicks": 0
+}
+      </code>
+      <code>
+        false
+      </code>
+      <code>
+        false
+      </code>
+    </div>
+  </section>
+</div>
+`;
