@@ -39,7 +39,7 @@ describe('Component Options Api', () => {
     expect(spyHandleClick1).toHaveBeenCalled();
   });
 
-  it('button1 triggers counter update function when clicked - spied on the fly', async () => {
+  it('button1 triggers counter update function when clicked - spied on the fly - should fail - cb without parenthesis', async () => {
     const spy = jest.spyOn(cmp.vm, 'handleClick1');
 
     await cmp.find('#button-2a').trigger('click');

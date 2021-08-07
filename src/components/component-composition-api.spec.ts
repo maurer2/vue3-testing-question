@@ -29,7 +29,7 @@ describe('Component Composition Api', () => {
     expect(cmp.__app._container).toMatchSnapshot();
   });
 
-  it('button1 triggers counter update function when clicked', async () => {
+  it('button1 triggers counter update function when clicked - should fail - cb without parenthesis', async () => {
     const spy = jest.spyOn(cmp.vm, 'handleClick1');
 
     await cmp.find('#button-1a').trigger('click');
@@ -53,7 +53,7 @@ describe('Component Composition Api', () => {
     expect(cmp.vm.counter2).toBe(1);
   });
 
-  it('runOnMount runs on mount', async () => {
+  it('runOnMount runs on mount - should fail - can\'t set spy before mount', async () => {
     // jest.spyOn(cmp.vm, 'runOnMount');
     expect(spyRunOnMount).toHaveBeenCalled();
   });
