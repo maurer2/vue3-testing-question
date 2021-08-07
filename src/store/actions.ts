@@ -3,14 +3,14 @@ import { State } from './types';
 import { mutationNames } from './mutations';
 
 const actionNames = Object.freeze({
-  updateNumberOfClicks: 'UPDATE_NUMBER_OF_CLICKS',
+  UPDATE_NUMBER_OF_CLICKS: 'UPDATE_NUMBER_OF_CLICKS',
 } as const);
 
 type ActionsName = keyof typeof actionNames
 
 const actions: ActionTree<State, State> = {
-  [actionNames.updateNumberOfClicks](context, payload?: ActionPayload): Promise<void> {
-    context.commit(mutationNames.updateNumberOfClicks);
+  [actionNames.UPDATE_NUMBER_OF_CLICKS](context, payload?: Readonly<ActionPayload>): Promise<void> {
+    context.commit(mutationNames.UPDATE_NUMBER_OF_CLICKS);
 
     return Promise.resolve();
   },

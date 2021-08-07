@@ -36,7 +36,7 @@ export default defineComponent({
     const store = useStore(key);
 
     function handleClick(): void {
-      store.dispatch(actionNames.updateNumberOfClicks);
+      store.dispatch(actionNames.UPDATE_NUMBER_OF_CLICKS);
     }
 
     return {
