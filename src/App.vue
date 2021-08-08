@@ -3,12 +3,14 @@
   <hr>
   <ComponentOptionsAPI />
   <hr>
+  <ComponentUseStoreDefaultKeyed />
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import ComponentCompositionAPI from './components/component-composition-api.vue';
 import ComponentOptionsAPI from './components/component-options-api.vue';
+import ComponentUseStoreDefaultKeyed from './components/component-with-default-usestore-function-keyed.vue';
 
 // eslint-disable-next-line import/extensions
 import { useStore } from './store/index';
@@ -20,12 +22,13 @@ export default defineComponent({
   components: {
     ComponentCompositionAPI,
     ComponentOptionsAPI,
+    ComponentUseStoreDefaultKeyed,
   },
   setup() {
     const store = useStore();
 
     function handleClick(): void {
-      store.dispatch(actionNames.updateNumberOfClicks);
+      store.dispatch(actionNames.UPDATE_NUMBER_OF_CLICKS);
     }
 
     return {
