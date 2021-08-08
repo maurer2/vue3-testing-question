@@ -11,9 +11,11 @@
       <code>
         {{ state }}
       </code>
+      -
       <code>
         {{ hasBeenClicked }}
       </code>
+      -
       <code>
         {{ hasBeenClicked5Times }}
       </code>

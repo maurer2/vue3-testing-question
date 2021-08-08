@@ -18,9 +18,11 @@ exports[`App matches snapshot 1`] = `
   "numberOfClicks": 0
 }
       </code>
+       - 
       <code>
         false
       </code>
+       - 
       <code>
         false
       </code>
