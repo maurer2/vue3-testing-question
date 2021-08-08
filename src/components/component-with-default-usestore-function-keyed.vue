@@ -1,6 +1,7 @@
 <template>
   <section>
     <button
+      :id="buttonId"
       type="button"
       @click="handleClick()"
     >
@@ -27,9 +28,11 @@
 import { defineComponent, computed } from 'vue';
 // eslint-disable-next-line import/extensions
 import { useStore } from 'vuex';
+import { nanoid } from 'nanoid';
 import { key } from '../store/index';
 /// import { index } from '../mocks/store';
 import { actionNames } from '../store/actions';
+
 // eslint-disable-next-line import/extensions
 
 export default defineComponent({
@@ -45,6 +48,7 @@ export default defineComponent({
       state: computed(() => store.state),
       hasBeenClicked: computed(() => store.getters.HAS_BEEN_CLICKED),
       hasBeenClicked5Times: computed(() => store.getters.HAS_BEEN_CLICKED_N_TIMES(5)),
+      buttonId: computed(() => `id-${nanoid(5)}`),
       handleClick,
     };
   },

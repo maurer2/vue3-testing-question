@@ -6,6 +6,7 @@ exports[`App matches snapshot 1`] = `
 >
   <section>
     <button
+      id="id-button-keyed"
       type="button"
     >
        Click 
