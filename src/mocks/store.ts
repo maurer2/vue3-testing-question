@@ -11,6 +11,9 @@ const storeInitial = createStore<State>({
     HAS_BEEN_CLICKED: jest.fn(() => false),
     HAS_BEEN_CLICKED_N_TIMES: jest.fn(() => (number: number) => false),
   },
+  actions: {
+    UPDATE_NUMBER_OF_CLICKS: jest.fn().mockResolvedValue(undefined),
+  },
 });
 
 // causes: [Vue warn]: inject() can only be used inside setup() or functional components.
