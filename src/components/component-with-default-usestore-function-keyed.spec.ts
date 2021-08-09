@@ -9,22 +9,37 @@ jest.mock('nanoid', () => ({
   nanoid: jest.fn().mockReturnValue('button-keyed'),
 }));
 
-const mockDispatch: any = jest.fn();
+// eslint-disable-next-line
+var mockDispatch: any;
 
 jest.mock('../mocks/store.ts', () => {
   const mockedStore = jest.requireActual('../mocks/store.ts');
-  // mockDispatch = jest.fn();
+  mockDispatch = jest.spyOn(mockedStore.storeInitial, 'dispatch');
 
   console.log(mockedStore);
 
+  const state = {
+    storeInitial: {
+      ...mockedStore.storeInitial,
+      dispatch: mockDispatch,
+    },
+  };
+
+  console.log(state.storeInitial._state.data);
+
   return {
-    ...mockedStore,
-    dispatch: () => jest.fn(),
+    key: mockedStore.key,
+    storeInitial: {
+      ...mockedStore.storeInitial,
+      dispatch: mockDispatch,
+      state: state.storeInitial._state.data,
+    },
+    // ...mockedStore,
     // ...jest.requireActual('../mocks/store.ts'),
   };
 });
 
-console.log(storeMock);
+// console.log(storeMock);
 
 describe('App', () => {
   let cmp: any;
@@ -40,7 +55,7 @@ describe('App', () => {
     });
 
     jest.spyOn(cmp.vm, 'handleClick');
-    jest.spyOn(storeMock, 'dispatch');
+    // jest.spyOn(storeMock, 'dispatch');
   });
 
   afterEach(() => {
@@ -81,5 +96,9 @@ describe('App', () => {
 
     // expect(spiedDispatch).toHaveBeenCalled();
     expect(storeMock.dispatch).toHaveBeenCalledWith('UPDATE_NUMBER_OF_CLICKS');
+  });
+
+  it('state is not undefined', () => {
+    expect(storeMock.state).toBeDefined();
   });
 });
