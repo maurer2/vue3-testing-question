@@ -10,36 +10,14 @@ jest.mock('nanoid', () => ({
 }));
 
 // eslint-disable-next-line
-var mockDispatch: any;
+var spiedDispatch: any;
 
 jest.mock('../mocks/store.ts', () => {
   const mockedStore = jest.requireActual('../mocks/store.ts');
-  mockDispatch = jest.spyOn(mockedStore.storeInitial, 'dispatch');
+  spiedDispatch = jest.spyOn(mockedStore.storeInitial, 'dispatch');
 
-  console.log(mockedStore);
-
-  const state = {
-    storeInitial: {
-      ...mockedStore.storeInitial,
-      dispatch: mockDispatch,
-    },
-  };
-
-  console.log(state.storeInitial._state.data);
-
-  return {
-    key: mockedStore.key,
-    storeInitial: {
-      ...mockedStore.storeInitial,
-      dispatch: mockDispatch,
-      state: state.storeInitial._state.data,
-    },
-    // ...mockedStore,
-    // ...jest.requireActual('../mocks/store.ts'),
-  };
+  return mockedStore;
 });
-
-// console.log(storeMock);
 
 describe('App', () => {
   let cmp: any;
@@ -87,7 +65,7 @@ describe('App', () => {
 
     await cmp.find('#id-button-keyed').trigger('click');
 
-    expect(mockDispatch).toHaveBeenCalled();
+    expect(spiedDispatch).toHaveBeenCalled();
   });
 
   it('handleClick dispatches click update action', () => {
@@ -100,5 +78,6 @@ describe('App', () => {
 
   it('state is not undefined', () => {
     expect(storeMock.state).toBeDefined();
+    expect(storeMock.state.numberOfClicks).toBe(0);
   });
 });
