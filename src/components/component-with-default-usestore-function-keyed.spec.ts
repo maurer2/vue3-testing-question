@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { shallowMount } from '@vue/test-utils';
-import { nanoid } from 'nanoid';
 import Component from './component-with-default-usestore-function-keyed.vue';
 
 import { storeInitial as storeMock, key } from '../mocks/store';
@@ -10,10 +9,22 @@ jest.mock('nanoid', () => ({
   nanoid: jest.fn().mockReturnValue('button-keyed'),
 }));
 
-jest.mock('../mocks/store.ts', () => ({
-  ...jest.requireActual('../mocks/store.ts'),
-  // dispatch: jest.fn(),
-}));
+const mockDispatch: any = jest.fn();
+
+jest.mock('../mocks/store.ts', () => {
+  const mockedStore = jest.requireActual('../mocks/store.ts');
+  // mockDispatch = jest.fn();
+
+  console.log(mockedStore);
+
+  return {
+    ...mockedStore,
+    dispatch: () => jest.fn(),
+    // ...jest.requireActual('../mocks/store.ts'),
+  };
+});
+
+console.log(storeMock);
 
 describe('App', () => {
   let cmp: any;
@@ -56,20 +67,19 @@ describe('App', () => {
     expect(cmp.vm.handleClick).toHaveBeenCalled();
   });
 
+  it('button is correctly wired up with handleClick 2', async () => {
+    expect(cmp.find('#id-button-keyed').exists()).toBe(true);
+
+    await cmp.find('#id-button-keyed').trigger('click');
+
+    expect(mockDispatch).toHaveBeenCalled();
+  });
+
   it('handleClick dispatches click update action', () => {
     // const spiedDispatch = jest.spyOn(storeMock, 'dispatch');
     cmp.vm.handleClick();
 
     // expect(spiedDispatch).toHaveBeenCalled();
     expect(storeMock.dispatch).toHaveBeenCalledWith('UPDATE_NUMBER_OF_CLICKS');
-  });
-
-  it('dispatches action updates the store', async () => {
-    expect(storeMock.state.numberOfClicks).toBe(0);
-
-    cmp.vm.handleClick();
-    await expect(storeMock.dispatch).toHaveBeenCalledWith('UPDATE_NUMBER_OF_CLICKS');
-
-    expect(storeMock.state).toBe(true);
   });
 });
