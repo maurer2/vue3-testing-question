@@ -5,10 +5,10 @@
   <hr>
   <ComponentUseStoreDefaultKeyed />
   <hr>
-  <ComponentSingleRoot class="parent" />
+  <ComponentSingleRoot class="parent parent-unscoped" />
   <hr>
   <dl>
-    <ComponentMultiRoot class="parent" />
+    <ComponentMultiRoot class="parent parent-unscoped" />
   </dl>
 </template>
 
@@ -63,6 +63,10 @@ export default defineComponent({
 
 code {
   white-space: pre-wrap;
+}
+
+.parent-unscoped {
+  background: yellow;
 }
 </style>
 
