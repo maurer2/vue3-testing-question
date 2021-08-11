@@ -4,6 +4,8 @@
   <ComponentOptionsAPI />
   <hr>
   <ComponentUseStoreDefaultKeyed />
+  <hr>
+  <ComponentMultiRoot />
 </template>
 
 <script lang="ts">
@@ -11,6 +13,7 @@ import { defineComponent, computed } from 'vue';
 import ComponentCompositionAPI from './components/component-composition-api.vue';
 import ComponentOptionsAPI from './components/component-options-api.vue';
 import ComponentUseStoreDefaultKeyed from './components/component-with-default-usestore-function-keyed.vue';
+import ComponentMultiRoot from './components/component-multi-root.vue';
 
 // eslint-disable-next-line import/extensions
 import { useStore } from './store/index';
@@ -23,6 +26,7 @@ export default defineComponent({
     ComponentCompositionAPI,
     ComponentOptionsAPI,
     ComponentUseStoreDefaultKeyed,
+    ComponentMultiRoot,
   },
   setup() {
     const store = useStore();
