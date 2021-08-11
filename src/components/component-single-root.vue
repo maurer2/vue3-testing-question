@@ -1,23 +1,24 @@
 <template>
-  <dt
-    class="key"
-    v-bind="$attrs"
-  >
-    Key
-  </dt>
-  <dd class="value">
-    Value 1
-  </dd>
-  <dd class="value">
-    Value 2
-  </dd>
+  <dl>
+    <dt
+      class="key"
+    >
+      Key
+    </dt>
+    <dd class="value">
+      Value 1
+    </dd>
+    <dd class="value">
+      Value 2
+    </dd>
+  </dl>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'ComponentMultiRoot',
+  name: 'ComponentSingleRoot',
 });
 
 </script>

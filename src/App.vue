@@ -5,7 +5,11 @@
   <hr>
   <ComponentUseStoreDefaultKeyed />
   <hr>
-  <ComponentMultiRoot />
+  <ComponentSingleRoot class="parent" />
+  <hr>
+  <dl>
+    <ComponentMultiRoot class="parent" />
+  </dl>
 </template>
 
 <script lang="ts">
@@ -14,6 +18,7 @@ import ComponentCompositionAPI from './components/component-composition-api.vue'
 import ComponentOptionsAPI from './components/component-options-api.vue';
 import ComponentUseStoreDefaultKeyed from './components/component-with-default-usestore-function-keyed.vue';
 import ComponentMultiRoot from './components/component-multi-root.vue';
+import ComponentSingleRoot from './components/component-single-root.vue';
 
 // eslint-disable-next-line import/extensions
 import { useStore } from './store/index';
@@ -27,6 +32,7 @@ export default defineComponent({
     ComponentOptionsAPI,
     ComponentUseStoreDefaultKeyed,
     ComponentMultiRoot,
+    ComponentSingleRoot,
   },
   setup() {
     const store = useStore();
@@ -58,4 +64,11 @@ export default defineComponent({
 code {
   white-space: pre-wrap;
 }
+</style>
+
+<style scoped>
+.parent {
+  color: red
+}
+
 </style>
