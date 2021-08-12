@@ -72,7 +72,7 @@ code {
 
 <style scoped>
 .parent {
-  color: red
+  border: 5px dashed red;
 }
 
 </style>
