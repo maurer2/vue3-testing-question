@@ -9,11 +9,15 @@ jest.mock('nanoid', () => ({
   nanoid: jest.fn().mockReturnValue('button-keyed'),
 }));
 
-// eslint-disable-next-line
+// jest.disableAutomock();
 
+// eslint-disable-next-line
+var mockedDispatch: any;
 jest.mock('../mocks/store.ts', () => {
   const mockedStore = jest.requireActual('../mocks/store.ts');
-  // jest.spyOn(mockedStore.storeInitial, 'dispatch');
+
+  mockedStore.storeInitial.dispatch = jest.fn();
+  mockedDispatch = mockedStore.storeInitial.dispatch;
 
   return mockedStore;
 });
@@ -59,19 +63,31 @@ describe('App', () => {
     expect(cmp.vm.handleClick).toHaveBeenCalled();
   });
 
-  it.skip('button is correctly wired up with handleClick 2', async () => {
+  it('button is correctly wired up with handleClick 2', async () => {
+    const spiedDispatch = jest.spyOn(storeMock, 'dispatch');
     expect(cmp.find('#id-button-keyed').exists()).toBe(true);
 
     await cmp.find('#id-button-keyed').trigger('click');
 
-    // expect(spiedDispatch).toHaveBeenCalled();
+    expect(spiedDispatch).toHaveBeenCalled();
+  });
+
+  it('button is correctly wired up with handleClick 3', async () => {
+    expect(cmp.find('#id-button-keyed').exists()).toBe(true);
+
+    await cmp.find('#id-button-keyed').trigger('click');
+
+    console.log(storeMock.dispatch);
+
+    expect(storeMock.dispatch).toHaveBeenCalled();
+    expect(mockedDispatch).toHaveBeenCalled();
   });
 
   it('handleClick dispatches click update action', () => {
-    // const spiedDispatch = jest.spyOn(storeMock, 'dispatch');
+    const spiedDispatch = jest.spyOn(storeMock, 'dispatch');
     cmp.vm.handleClick();
 
-    // expect(spiedDispatch).toHaveBeenCalled();
+    expect(spiedDispatch).toHaveBeenCalled();
     expect(storeMock.dispatch).toHaveBeenCalledWith('UPDATE_NUMBER_OF_CLICKS');
   });
 
