@@ -21,7 +21,7 @@ module.exports = {
     'newline-before-return': 'error',
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',
-
+    'no-console': 'off',
   },
   settings: {
     'import/resolver': {
