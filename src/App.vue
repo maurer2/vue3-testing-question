@@ -10,6 +10,8 @@
   <dl>
     <ComponentMultiRoot class="parent parent-unscoped" />
   </dl>
+  <hr>
+  <ComponentScriptSetup :title="title" />
 </template>
 
 <script lang="ts">
@@ -19,11 +21,14 @@ import ComponentOptionsAPI from './components/component-options-api.vue';
 import ComponentUseStoreDefaultKeyed from './components/component-with-default-usestore-function-keyed.vue';
 import ComponentMultiRoot from './components/component-multi-root.vue';
 import ComponentSingleRoot from './components/component-single-root.vue';
+import { ComponentScriptSetup } from './components/component-script-setup';
 
 // eslint-disable-next-line import/extensions
 import { useStore } from './store/index';
 // eslint-disable-next-line import/extensions
 import { actionNames } from './store/actions';
+
+type myTitle = string
 
 export default defineComponent({
   name: 'App',
@@ -33,6 +38,7 @@ export default defineComponent({
     ComponentUseStoreDefaultKeyed,
     ComponentMultiRoot,
     ComponentSingleRoot,
+    ComponentScriptSetup,
   },
   setup() {
     const store = useStore();
@@ -46,6 +52,7 @@ export default defineComponent({
       hasBeenClicked: computed(() => store.getters.HAS_BEEN_CLICKED),
       hasBeenClicke5Times: computed(() => store.getters.HAS_BEEN_CLICKED_N_TIMES(5)),
       handleClick,
+      title: 'Titel test' as myTitle,
     };
   },
 });
