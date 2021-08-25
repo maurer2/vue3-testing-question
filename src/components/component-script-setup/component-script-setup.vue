@@ -11,16 +11,28 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineExpose, defineProps } from 'vue';
+import { ref, defineProps, defineEmits } from 'vue';
 
-const props = defineProps({
-  title: String,
-});
+type Props = {
+  title: string,
+  initalCounterValue?: number
+}
+
+type Emits = {
+  // (event: Event['type'], payload: number | string): void
+  (event: 'update-counter', payload: number): void
+}
+
+const props = defineProps<Props>();
+const emits = defineEmits<Emits>();
 
 const counter = ref<number>(0);
 
 function handleClick(): void {
-  counter.value += 1;
+  const newCounterValue = counter.value + 1;
+
+  counter.value = newCounterValue;
+  emits('update-counter', newCounterValue);
 }
 
 </script>
