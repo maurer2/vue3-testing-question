@@ -24,15 +24,16 @@ type Props = {
 }
 
 // Emits
-const eventNames = Object.freeze([
-  'update-counter',
-  'test',
-] as const);
+const eventNames = Object.freeze({
+  updateCounter: 'update-counter',
+  test: 'test',
+} as const);
 
-type EventNames = typeof eventNames[number]
+type EventNames = keyof typeof eventNames
+type EventValues = typeof eventNames[keyof typeof eventNames];
 
 type Emits = {
-  (event: EventNames, payload: number): void
+  (event: EventValues, payload: number): void
 }
 
 const props = defineProps<Props>();
@@ -47,7 +48,7 @@ function handleClick(): void {
   const newCounterValue = counter.value + 1;
 
   counter.value = newCounterValue;
-  emits('update-counter', newCounterValue);
+  emits(eventNames.updateCounter, newCounterValue);
 }
 
 </script>
