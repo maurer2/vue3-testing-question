@@ -32,8 +32,10 @@ const eventNames = Object.freeze({
 type EventNames = keyof typeof eventNames
 type EventValues = typeof eventNames[EventNames];
 type EventPayload = {
-  updateCounter: number
-  test: string,
+  'update-counter': number
+  'test': string,
+  // eslint-disable-next-line no-undef
+  // [key in EventValues]: string | number
 };
 
 type Emits = {
@@ -49,7 +51,7 @@ const counter = ref<number>(
 );
 
 // eslint-disable-next-line max-len
-function emitNewCounterValue<E extends EventValues, P extends EventPayload['updateCounter']>(event: E, payload: P) {
+function emitNewCounterValue<E extends EventValues, P extends EventPayload[E]>(event: E, payload: P) {
   emits(event, payload);
 }
 
@@ -57,10 +59,9 @@ function handleClick(): void {
   const newCounterValue = counter.value + 1;
 
   counter.value = newCounterValue;
-  emitNewCounterValue('update-counter', newCounterValue);
+  // emitNewCounterValue('update-counter', newCounterValue);
+  emitNewCounterValue(eventNames.updateCounter, newCounterValue);
   // emitNewCounterValue('update-counter', '5');
-
-  // emits(eventNames.updateCounter, newCounterValue);
 }
 
 </script>
