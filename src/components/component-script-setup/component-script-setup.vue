@@ -30,10 +30,14 @@ const eventNames = Object.freeze({
 } as const);
 
 type EventNames = keyof typeof eventNames
-type EventValues = typeof eventNames[keyof typeof eventNames];
+type EventValues = typeof eventNames[EventNames];
+type EventPayload = {
+  updateCounter: number
+  test: string,
+};
 
 type Emits = {
-  (event: EventValues, payload: number): void
+  (event: EventValues, payload: string | number): void
 }
 
 const props = defineProps<Props>();
@@ -44,11 +48,19 @@ const counter = ref<number>(
   (initialCounterValue?.value === undefined) ? 0 : initialCounterValue?.value,
 );
 
+// eslint-disable-next-line max-len
+function emitNewCounterValue<E extends EventValues, P extends EventPayload['updateCounter']>(event: E, payload: P) {
+  emits(event, payload);
+}
+
 function handleClick(): void {
   const newCounterValue = counter.value + 1;
 
   counter.value = newCounterValue;
-  emits(eventNames.updateCounter, newCounterValue);
+  emitNewCounterValue('update-counter', newCounterValue);
+  // emitNewCounterValue('update-counter', '5');
+
+  // emits(eventNames.updateCounter, newCounterValue);
 }
 
 </script>
