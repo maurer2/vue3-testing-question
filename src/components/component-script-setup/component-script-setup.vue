@@ -29,17 +29,15 @@ const eventNames = Object.freeze({
   test: 'test',
 } as const);
 
-type EventNames = keyof typeof eventNames
-type EventValues = typeof eventNames[EventNames];
-type EventPayload = {
-  'update-counter': number
-  'test': string,
-  // eslint-disable-next-line no-undef
-  // [key in EventValues]: string | number
+type EventKeys = keyof typeof eventNames
+type EventNames = typeof eventNames[EventKeys];
+type EventPayloads = {
+  [eventNames.updateCounter]: number
+  [eventNames.test]: string,
+  // [key in EventNames]: string | number
 };
-
 type Emits = {
-  (event: EventValues, payload: string | number): void
+  (eventName: EventNames, payload: unknown): void
 }
 
 const props = defineProps<Props>();
@@ -50,18 +48,17 @@ const counter = ref<number>(
   (initialCounterValue?.value === undefined) ? 0 : initialCounterValue?.value,
 );
 
-// eslint-disable-next-line max-len
-function emitNewCounterValue<E extends EventValues, P extends EventPayload[E]>(event: E, payload: P) {
-  emits(event, payload);
+function emitValue<E extends EventNames, P extends EventPayloads[E]>(eventName: E, payload: P) {
+  emits(eventName, payload);
 }
 
 function handleClick(): void {
   const newCounterValue = counter.value + 1;
 
   counter.value = newCounterValue;
-  // emitNewCounterValue('update-counter', newCounterValue);
-  emitNewCounterValue(eventNames.updateCounter, newCounterValue);
-  // emitNewCounterValue('update-counter', '5');
+  emitValue(eventNames.updateCounter, newCounterValue);
+  // emitValue('update-counter', '5');
+  // emitValue(eventNames.test, 'test');
 }
 
 </script>
