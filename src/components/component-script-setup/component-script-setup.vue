@@ -33,11 +33,11 @@ type EventKeys = keyof typeof eventNames
 type EventNames = typeof eventNames[EventKeys];
 type EventPayloads = {
   [eventNames.updateCounter]: number
-  [eventNames.test]: string,
+  [eventNames.test]: never,
   // [key in EventNames]: string | number
 };
 type Emits = {
-  (eventName: EventNames, payload: unknown): void
+  (eventName: EventNames, payload?: unknown): void
 }
 
 const props = defineProps<Props>();
@@ -48,8 +48,17 @@ const counter = ref<number>(
   (initialCounterValue?.value === undefined) ? 0 : initialCounterValue?.value,
 );
 
-function emitValue<E extends EventNames, P extends EventPayloads[E]>(eventName: E, payload: P) {
-  emits(eventName, payload);
+// eslint-disable-next-line max-len
+function emitValue<E extends EventNames, P extends EventPayloads[E] = never>(eventName: E, payload: P): void {
+  const hasPayload: boolean = payload !== null;
+
+  if (hasPayload) {
+    emits(eventName, payload);
+
+    return;
+  }
+
+  emits(eventName);
 }
 
 function handleClick(): void {
@@ -58,7 +67,7 @@ function handleClick(): void {
   counter.value = newCounterValue;
   emitValue(eventNames.updateCounter, newCounterValue);
   // emitValue('update-counter', '5');
-  // emitValue(eventNames.test, 'test');
+  emitValue(eventNames.test, null as never);
 }
 
 </script>
